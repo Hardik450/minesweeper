@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minesweeper — Survey Grid</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <main class="sheet">
+
+    <!-- Briefing screen -->
+    <section id="briefing" class="panel">
+      <p class="dwg-label">DWG NO. 08-08 &nbsp;·&nbsp; REV A</p>
+      <h1 class="title">Survey Grid</h1>
+      <p class="subtitle">Field clearance exercise</p>
+
+      <ol class="rules">
+        <li>Click a plot to survey it.</li>
+        <li>Right-click a plot to mark it as suspected ordnance.</li>
+        <li>Mark every mine correctly to clear the field.</li>
+      </ol>
+
+      <button id="beginBtn" class="stamp-btn" type="button">Begin Survey</button>
+    </section>
+
+    <!-- Game screen -->
+    <section id="game" class="panel hidden">
+      <header class="sheet-header">
+        <p class="dwg-label">DWG NO. 08-08 &nbsp;·&nbsp; REV A</p>
+        <h1 class="title small">Survey Grid</h1>
+      </header>
+
+      <div class="layout">
+        <div class="board-wrap">
+          <div id="board" class="board" style="--cols: {{ width }};"></div>
+        </div>
+
+        <aside class="title-block">
+          <div class="tb-row">
+            <span class="tb-label">Status</span>
+            <span id="statusText" class="tb-value">Surveying&hellip;</span>
+          </div>
+          <div class="tb-row">
+            <span class="tb-label">Ordnance</span>
+            <span id="minesText" class="tb-value">0 / {{ mines }} flagged</span>
+          </div>
+          <div class="tb-row ai-row">
+            <span id="aiMessage" class="ai-message"></span>
+          </div>
+          <div class="tb-actions">
+            <button id="aiMoveBtn" class="stamp-btn" type="button">AI Move</button>
+            <button id="resetBtn" class="stamp-btn outline" type="button">New Survey</button>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
